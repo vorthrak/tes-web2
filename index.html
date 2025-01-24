@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Website Sederhana dan Interaktif</title>
+    <style>
+        /* Styling dasar */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+
+        header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 15px;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 36px;
+        }
+
+        .container {
+            padding: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+
+        .button-container {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .cta-button {
+            padding: 15px 30px;
+            background-color: #ff9800;
+            border: none;
+            color: white;
+            font-size: 18px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .cta-button:hover {
+            background-color: #e68900;
+        }
+
+        .result {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #f1f1f1;
+            border-radius: 5px;
+            display: none;
+        }
+
+        /* Styling untuk form input */
+        .input-field {
+            margin-bottom: 15px;
+        }
+
+        .input-field input {
+            padding: 10px;
+            width: 100%;
+            font-size: 16px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Website Interaktif</h1>
+        <p>Selamat datang! Kami ingin berbicara lebih banyak dengan Anda.</p>
+    </header>
+
+    <div class="container">
+        <h2>Masukkan Nama Anda</h2>
+        <div class="input-field">
+            <input type="text" id="nameInput" placeholder="Nama Anda" />
+        </div>
+        <div class="button-container">
+            <button class="cta-button" onclick="displayGreeting()">Kirim</button>
+        </div>
+        <div class="result" id="result">
+            <p id="greetingMessage"></p>
+        </div>
+    </div>
+
+    <script>
+        // Fungsi untuk menampilkan pesan sambutan
+        function displayGreeting() {
+            var name = document.getElementById('nameInput').value;
+            var greetingMessage = document.getElementById('greetingMessage');
+            var result = document.getElementById('result');
+            
+            if (name.trim() !== "") {
+                greetingMessage.innerHTML = "Halo, " + name + "! Senang bertemu dengan Anda!";
+                result.style.display = 'block'; // Menampilkan hasil
+            } else {
+                alert("Tolong masukkan nama terlebih dahulu.");
+            }
+        }
+    </script>
+
+</body>
+</html>
