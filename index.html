@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Website Interaktif & Menarik</title>
+    <title>Website Interaktif & Penuh Warna</title>
     <style>
         /* Reset dan pengaturan dasar */
         * {
@@ -40,6 +40,7 @@
             font-style: italic;
         }
 
+        /* Tombol interaktif */
         .cta-button {
             padding: 15px 30px;
             background-color: #ff9800;
@@ -48,18 +49,20 @@
             font-size: 20px;
             border-radius: 8px;
             cursor: pointer;
-            transition: transform 0.3s, background-color 0.3s;
+            transition: transform 0.3s, background-color 0.3s, box-shadow 0.3s;
         }
 
         .cta-button:hover {
             background-color: #e68900;
             transform: scale(1.1);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
         }
 
         .cta-button:active {
             transform: scale(0.9);
         }
 
+        /* Input field */
         .input-field input {
             padding: 12px;
             font-size: 18px;
@@ -70,6 +73,7 @@
             border: 1px solid #ff9800;
             background-color: white;
             color: #333;
+            transition: border 0.3s, box-shadow 0.3s;
         }
 
         .input-field input:focus {
@@ -78,6 +82,7 @@
             box-shadow: 0 0 5px rgba(255, 87, 34, 0.5);
         }
 
+        /* Pesan hasil */
         .result {
             display: none;
             background-color: rgba(0, 0, 0, 0.7);
@@ -94,12 +99,16 @@
             font-size: 22px;
             margin: 10px 0;
             font-weight: bold;
+            color: #ff9800;
+            transition: color 0.3s;
         }
 
         .result p:hover {
-            color: #ff9800;
+            color: #fff;
+            text-shadow: 1px 1px 3px rgba(255, 255, 255, 0.7);
         }
 
+        /* Animasi untuk Fade In */
         @keyframes fadeIn {
             from {
                 opacity: 0;
@@ -107,6 +116,18 @@
             to {
                 opacity: 1;
             }
+        }
+
+        /* Animasi untuk Background */
+        @keyframes colorChange {
+            0% { background: linear-gradient(45deg, #ff7e5f, #feb47b); }
+            50% { background: linear-gradient(45deg, #66a6ff, #89f7fe); }
+            100% { background: linear-gradient(45deg, #ff7e5f, #feb47b); }
+        }
+
+        /* Animasi untuk background dengan perubahan gradien */
+        .background-animation {
+            animation: colorChange 10s ease infinite;
         }
 
         footer {
@@ -126,13 +147,6 @@
             text-decoration: underline;
         }
 
-        /* Animasi untuk Background */
-        @keyframes colorChange {
-            0% { background: linear-gradient(45deg, #ff7e5f, #feb47b); }
-            50% { background: linear-gradient(45deg, #66a6ff, #89f7fe); }
-            100% { background: linear-gradient(45deg, #ff7e5f, #feb47b); }
-        }
-
         /* Responsif untuk ukuran kecil */
         @media (max-width: 768px) {
             .cta-button {
@@ -150,7 +164,7 @@
         }
     </style>
 </head>
-<body>
+<body class="background-animation">
 
     <header>
         <h1>Website Interaktif & Penuh Warna</h1>
