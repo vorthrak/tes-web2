@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Website Interaktif & Penuh Warna</title>
+    <title>Website Penuh Warna & Interaktif</title>
     <style>
         /* Reset dan pengaturan dasar */
         * {
@@ -23,6 +23,7 @@
             align-items: center;
             flex-direction: column;
             transition: background-color 0.5s ease;
+            overflow: hidden;
         }
 
         header {
@@ -30,17 +31,34 @@
         }
 
         h1 {
-            font-size: 48px;
-            text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3);
+            font-size: 50px;
+            text-shadow: 3px 3px 8px rgba(0, 0, 0, 0.4);
+            animation: typing 3s steps(30) 1s forwards;
+        }
+
+        /* Animasi ketikan untuk judul */
+        @keyframes typing {
+            from { width: 0; }
+            to { width: 100%; }
         }
 
         p {
             font-size: 20px;
             margin-bottom: 20px;
             font-style: italic;
+            animation: fadeIn 3s ease-out;
         }
 
-        /* Tombol interaktif */
+        /* Animasi untuk Fade In */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
         .cta-button {
             padding: 15px 30px;
             background-color: #ff9800;
@@ -50,6 +68,7 @@
             border-radius: 8px;
             cursor: pointer;
             transition: transform 0.3s, background-color 0.3s, box-shadow 0.3s;
+            margin: 10px;
         }
 
         .cta-button:hover {
@@ -92,7 +111,17 @@
             max-width: 600px;
             width: 90%;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-            animation: fadeIn 0.5s ease-out;
+            animation: fadeInResult 0.5s ease-out;
+        }
+
+        /* Animasi Fade In untuk hasil */
+        @keyframes fadeInResult {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
         }
 
         .result p {
@@ -108,26 +137,17 @@
             text-shadow: 1px 1px 3px rgba(255, 255, 255, 0.7);
         }
 
-        /* Animasi untuk Fade In */
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-            }
-            to {
-                opacity: 1;
-            }
+        .background-animation {
+            animation: colorChange 15s ease infinite;
         }
 
         /* Animasi untuk Background */
         @keyframes colorChange {
             0% { background: linear-gradient(45deg, #ff7e5f, #feb47b); }
+            25% { background: linear-gradient(45deg, #ff9800, #ff5722); }
             50% { background: linear-gradient(45deg, #66a6ff, #89f7fe); }
+            75% { background: linear-gradient(45deg, #8e44ad, #3498db); }
             100% { background: linear-gradient(45deg, #ff7e5f, #feb47b); }
-        }
-
-        /* Animasi untuk background dengan perubahan gradien */
-        .background-animation {
-            animation: colorChange 10s ease infinite;
         }
 
         footer {
@@ -145,6 +165,16 @@
 
         footer a:hover {
             text-decoration: underline;
+        }
+
+        /* Animasi bouncing untuk tombol */
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .bounce-btn {
+            animation: bounce 1s infinite;
         }
 
         /* Responsif untuk ukuran kecil */
@@ -167,19 +197,20 @@
 <body class="background-animation">
 
     <header>
-        <h1>Website Interaktif & Penuh Warna</h1>
-        <p>Selamat datang! Masukkan nama Anda untuk pengalaman lebih interaktif.</p>
+        <h1>Selamat Datang di Website Interaktif!</h1>
+        <p>Masukkan nama Anda untuk melanjutkan pengalaman ini.</p>
     </header>
 
     <div>
         <div class="input-field">
             <input type="text" id="nameInput" placeholder="Masukkan Nama Anda" />
         </div>
-        <button class="cta-button" onclick="displayGreeting()">Kirim Nama</button>
+        <button class="cta-button bounce-btn" onclick="displayGreeting()">Kirim Nama</button>
 
         <div class="result" id="result">
             <p id="greetingMessage"></p>
-            <button class="cta-button" onclick="changeBackgroundColor()">Ganti Warna Latar</button>
+            <button class="cta-button bounce-btn" onclick="changeBackgroundColor()">Ganti Warna Latar</button>
+            <button class="cta-button bounce-btn" onclick="startConfetti()">Rayakan!</button>
         </div>
     </div>
 
@@ -207,17 +238,35 @@
         function changeBackgroundColor() {
             var colors = [
                 "linear-gradient(45deg, #ff7e5f, #feb47b)",
-                "linear-gradient(45deg, #66a6ff, #89f7fe)",
                 "linear-gradient(45deg, #ff9800, #ff5722)",
+                "linear-gradient(45deg, #66a6ff, #89f7fe)",
                 "linear-gradient(45deg, #8e44ad, #3498db)"
             ];
             var randomColor = colors[Math.floor(Math.random() * colors.length)];
             document.body.style.background = randomColor;
         }
 
-        // Menambahkan animasi latar belakang
+        // Fungsi untuk merayakan dengan confetti
+        function startConfetti() {
+            var confetti = document.createElement('div');
+            confetti.style.position = 'absolute';
+            confetti.style.top = '0';
+            confetti.style.left = '0';
+            confetti.style.width = '100vw';
+            confetti.style.height = '100vh';
+            confetti.style.pointerEvents = 'none';
+            confetti.style.zIndex = '9999';
+            confetti.style.background = 'url("https://cdn.pixabay.com/photo/2017/09/01/18/47/confetti-2709230_960_720.png") center/cover';
+            document.body.appendChild(confetti);
+
+            setTimeout(() => {
+                document.body.removeChild(confetti);
+            }, 4000);
+        }
+
+        // Animasi latar belakang secara berulang
         setInterval(() => {
-            document.body.style.animation = 'colorChange 10s ease infinite';
+            document.body.style.animation = 'colorChange 15s ease infinite';
         }, 5000);
     </script>
 
